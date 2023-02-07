@@ -4,6 +4,7 @@ export default defineConfig({
   antd: {},
   access: {},
   model: {},
+  dva:{},
   initialState: {},
   request: {},
   layout: {
@@ -36,6 +37,11 @@ export default defineConfig({
       name: ' CRUD 示例',
       path: '/table',
       component: './Table',
+    },
+    {
+      name: ' 过期',
+      path: '/expire',
+      component: './ExpireManage',
     },
   ],
   npmClient: 'npm',

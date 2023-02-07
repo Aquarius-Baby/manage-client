@@ -1,10 +1,10 @@
-import { request } from '@@/plugin-request';
+import {request} from '@@/plugin-request';
 
-export async function list() {
-  return request('/api/expire/list', {
-    skipErrorHandler: true,
-    getResponse: false,
-    requestInterceptors: [],
-    responseInterceptors: [],
-  });
+export async function queryExpireList() {
+    return request('/api/expire/list', {
+        skipErrorHandler: true,
+        getResponse: false,
+        requestInterceptors: [],
+        responseInterceptors: [],
+    });
 }
