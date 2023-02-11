@@ -1,14 +1,27 @@
 import {PageContainer} from "@ant-design/pro-components";
-import {useEffect} from "@umijs/max";
-import {useDispatch} from "react-redux";
+import React, {forwardRef, useEffect} from "react";
+import {connect, useDispatch, ConnectProps} from '@umijs/max';
+import {ExpireModelState} from "@/models/ExpireManage/expire";
 
+interface PageProps extends ConnectProps {
+    expire: ExpireModelState
+}
 
-const ExpireManagePage: React.FC = () => {
+const ExpireManagePage: React.ForwardRefRenderFunction<HTMLElement, PageProps> = ({
+                                                                                      expire
+                                                                                  }) => {
 
-    // // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     // dispatch({type: "expire/queryList"})
-    // }, []);
+    const {list} = expire;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({type: "expire/queryList"})
+    }, []);
+
+    useEffect(() => {
+        console.log("====>>>>")
+        console.log(list)
+    }, [list]);
 
 
     return (
@@ -22,4 +35,11 @@ const ExpireManagePage: React.FC = () => {
     );
 };
 
-export default ExpireManagePage;
+export default connect((
+    {
+        expire
+    }: {
+        expire: ExpireModelState
+    }) => ({
+    expire: expire
+}))(forwardRef(ExpireManagePage));
